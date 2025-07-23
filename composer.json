@@ -1,0 +1,59 @@
+{
+    "name": "aerni/google-maps",
+    "description": "A Statamic addon for Google Maps",
+    "keywords": [
+        "statamic",
+        "google maps",
+        "places"
+    ],
+    "homepage": "https://github.com/aerni/statamic-google-maps",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Aerni",
+            "email": "hello@michaelaerni.ch",
+            "homepage": "https://www.michaelaerni.ch",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^12.0",
+        "skagarwal/google-places-api": "^3.1",
+        "statamic/cms": "^5.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aerni\\GoogleMaps\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aerni\\GoogleMaps\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Google Maps",
+            "description": "A Statamic addon for Google Maps"
+        },
+        "laravel": {
+            "providers": [
+                "Aerni\\GoogleMaps\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
