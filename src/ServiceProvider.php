@@ -2,11 +2,11 @@
 
 namespace Aerni\GoogleMaps;
 
-use Statamic\Statamic;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
 use Aerni\GoogleMaps\Fieldtypes\Places;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Statamic\Providers\AddonServiceProvider;
+use Statamic\Statamic;
 
 class ServiceProvider extends AddonServiceProvider
 {

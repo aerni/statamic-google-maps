@@ -2,11 +2,11 @@
 
 namespace Aerni\GoogleMaps\Fieldtypes;
 
-use Statamic\Fields\Fieldtype;
 use Illuminate\Support\Collection;
-use Statamic\Dictionaries\Countries;
 use Illuminate\Support\Facades\Cache;
 use SKAgarwal\GoogleApi\PlacesNew\GooglePlaces;
+use Statamic\Dictionaries\Countries;
+use Statamic\Fields\Fieldtype;
 
 class Places extends Fieldtype
 {
@@ -44,7 +44,7 @@ class Places extends Fieldtype
                                     'display' => 'Longitude',
                                     'type' => 'float',
                                     'width' => 50,
-                                ]
+                                ],
                             ],
                         ],
                     ],
@@ -154,7 +154,7 @@ class Places extends Fieldtype
             'map_id' => $this->config('map_id', config('google-maps.map_id')),
             'center' => $this->config('center', config('google-maps.center')),
             'zoom' => $this->config('zoom', config('google-maps.zoom')),
-            'countries' =>  collect((new Countries())->optionItems())
+            'countries' => collect((new Countries)->optionItems())
                 ->intersect($this->config('countries'))
                 ->map(fn ($item) => $item['iso2'])
                 ->values(),
