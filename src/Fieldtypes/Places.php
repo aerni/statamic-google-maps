@@ -174,7 +174,7 @@ class Places extends Fieldtype
 
         return Cache::rememberForever(
             "google-maps-place-details-{$id}",
-            fn () => GooglePlaces::make()->placeDetails($id, $this->config('fields', ['*']))->collect()->snakeKeys()
+            fn () => GooglePlaces::make(config('google-maps.google_places_api_key'))->placeDetails($id, $this->config('fields', ['*']))->collect()->snakeKeys()
         );
     }
 }
