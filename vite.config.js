@@ -1,18 +1,19 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue2';
+import statamic from '@statamic/cms/vite-plugin';
+import tailwind from '@tailwindcss/vite';
 
 export default defineConfig({
     plugins: [
+        statamic(),
+        tailwind(),
         laravel({
             input: [
-                'resources/js/cp.js',
-                'resources/css/cp.css'
+                'resources/js/google-maps.js',
+                'resources/css/google-maps.css'
             ],
-            refresh: true,
-            publicDirectory: 'resources/dist',
-            hotFile: 'resources/dist/hot',
+            hotFile: 'dist/hot',
+            publicDirectory: 'dist',
         }),
-        vue(),
     ],
 });
