@@ -1,16 +1,16 @@
 <script setup>
 import { Fieldtype } from '@statamic/cms';
-import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const emit = defineEmits(Fieldtype.emits);
 const props = defineProps(Fieldtype.props);
 const { expose, update, isReadOnly } = Fieldtype.use(emit, props);
 defineExpose(expose);
 
-const mapEl = useTemplateRef('map');
-const autocompleteEl = useTemplateRef('autocomplete');
+const mapEl = ref(null);
+const autocompleteEl = ref(null);
 
-let map = null;
+let mapInstance = null;
 let marker = null;
 let infoWindow = null;
 let placeAutocomplete = null;
@@ -45,7 +45,7 @@ async function init() {
 }
 
 function initMap() {
-    map = new google.maps.Map(mapEl.value, {
+    mapInstance = new google.maps.Map(mapEl.value, {
         mapId: props.meta.map_id,
         center: props.meta.center,
         zoom: props.meta.zoom,
@@ -88,10 +88,10 @@ function updateMapInfo(place) {
     placeAutocomplete.locationBias = place.location;
 
     if (place.viewport) {
-        map.fitBounds(place.viewport);
+        mapInstance.fitBounds(place.viewport);
     } else {
-        map.setCenter(place.location);
-        map.setZoom(17);
+        mapInstance.setCenter(place.location);
+        mapInstance.setZoom(17);
     }
 }
 
@@ -101,7 +101,7 @@ function createMarker(location) {
     }
 
     marker = new google.maps.marker.AdvancedMarkerElement({
-        map,
+        map: mapInstance,
     });
 
     marker.position = location;
@@ -117,7 +117,7 @@ function createInfoWindow(displayName, formattedAddress, location) {
     infoWindow.setPosition(location);
 
     infoWindow.open({
-        map,
+        map: mapInstance,
         anchor: marker,
         shouldFocus: false,
     });
@@ -156,8 +156,8 @@ function setInteractive(interactive) {
         placeAutocomplete.disabled = !interactive;
     }
 
-    if (map) {
-        map.setOptions({
+    if (mapInstance) {
+        mapInstance.setOptions({
             gestureHandling: interactive ? 'auto' : 'none',
             zoomControl: interactive,
             keyboardShortcuts: interactive,
@@ -179,14 +179,14 @@ function destroy() {
         marker = null;
     }
 
-    map = null;
+    mapInstance = null;
 }
 </script>
 
 <template>
     <div class="relative overflow-hidden rounded-lg h-[600px] border border-gray-300" :class="{ 'pointer-events-none opacity-75': isReadOnly }">
-        <div ref="map" class="h-full"></div>
-        <div ref="autocomplete" class="rounded-[3px] shadow-ui-sm border border-gray-300 absolute right-4 left-4 top-4"></div>
+        <div ref="mapEl" class="h-full"></div>
+        <div ref="autocompleteEl" class="rounded-[3px] shadow-ui-sm border border-gray-300 absolute right-4 left-4 top-4"></div>
     </div>
 </template>
 
