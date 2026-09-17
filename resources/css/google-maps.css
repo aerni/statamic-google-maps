@@ -1,9 +1,2 @@
-@import "tailwindcss" prefix(gm);
-
-.test {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.25em;
-    height: 600px;
-    border: 1px solid rgb(196 204 212 / 1);
-}
+@import '@statamic/cms/tailwind.css';
+@source '../js';

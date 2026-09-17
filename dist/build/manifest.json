@@ -1,6 +1,6 @@
 {
   "resources/css/google-maps.css": {
-    "file": "assets/google-maps-Bswlml2q.css",
+    "file": "assets/google-maps-B0VdEjOi.css",
     "src": "resources/css/google-maps.css",
     "isEntry": true,
     "name": "google-maps",
@@ -9,7 +9,7 @@
     ]
   },
   "resources/js/google-maps.js": {
-    "file": "assets/google-maps-B0GAYVLn.js",
+    "file": "assets/google-maps-Hnn_debB.js",
     "name": "google-maps",
     "src": "resources/js/google-maps.js",
     "isEntry": true,

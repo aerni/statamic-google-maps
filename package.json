@@ -2,16 +2,15 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite build --watch --mode development --minify false --sourcemap",
+        "dev": "vite",
         "build": "vite build",
         "watch": "vite build --watch"
     },
+    "dependencies": {
+        "@statamic/cms": "file:./vendor/statamic/cms/resources/dist-package"
+    },
     "devDependencies": {
-        "@statamic/cms": "file:./vendor/statamic/cms/resources/js/package",
         "@tailwindcss/vite": "^4.0.0",
-        "@tailwindcss/typography": "^0.5.16",
-        "@vitejs/plugin-vue": "^6.0.1",
-        "autoprefixer": "^10.4.21",
         "laravel-vite-plugin": "^2.0.0",
         "tailwindcss": "^4.1.12",
         "vite": "^7.1.3"
