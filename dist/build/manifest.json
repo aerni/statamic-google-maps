@@ -1,19 +1,20 @@
 {
   "resources/css/google-maps.css": {
-    "file": "assets/google-maps-NyICQzbz.css",
+    "file": "assets/google-maps-Bswlml2q.css",
     "src": "resources/css/google-maps.css",
     "isEntry": true,
+    "name": "google-maps",
     "names": [
       "google-maps.css"
     ]
   },
   "resources/js/google-maps.js": {
-    "file": "assets/google-maps-BP6NHCj2.js",
+    "file": "assets/google-maps-B0GAYVLn.js",
     "name": "google-maps",
     "src": "resources/js/google-maps.js",
     "isEntry": true,
     "css": [
-      "assets/google-maps-Ck3TavAb.css"
+      "assets/google-maps-C8nYNNM1.css"
     ]
   }
 }
