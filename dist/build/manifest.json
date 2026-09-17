@@ -1,0 +1,20 @@
+{
+  "resources/css/google-maps.css": {
+    "file": "assets/google-maps-B0VdEjOi.css",
+    "src": "resources/css/google-maps.css",
+    "isEntry": true,
+    "name": "google-maps",
+    "names": [
+      "google-maps.css"
+    ]
+  },
+  "resources/js/google-maps.js": {
+    "file": "assets/google-maps-B92Y016j.js",
+    "name": "google-maps",
+    "src": "resources/js/google-maps.js",
+    "isEntry": true,
+    "css": [
+      "assets/google-maps-C8nYNNM1.css"
+    ]
+  }
+}
