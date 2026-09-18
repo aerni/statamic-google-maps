@@ -2,6 +2,7 @@
 .DS_Store
 .idea
 .env
+.phpunit.result.cache
 node_modules
 vendor
 hot

@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use SKAgarwal\GoogleApi\PlacesNew\GooglePlaces;
 use Statamic\Dictionaries\Countries;
+use Statamic\Facades\Site;
 use Statamic\Fields\Fieldtype;
 
 class Places extends Fieldtype
@@ -177,9 +178,34 @@ class Places extends Fieldtype
             return null;
         }
 
+        $params = $this->localizationParams();
+
         return Cache::rememberForever(
-            "google-maps-place-details-{$id}",
-            fn () => GooglePlaces::make(config('google-maps.google_places_api_key'))->placeDetails($id, $this->config('fields', ['*']))->collect()->snakeKeys()
+            $this->placeDetailsCacheKey($id, $params),
+            fn () => GooglePlaces::make(config('google-maps.google_places_api_key'))
+                ->placeDetails($id, $this->config('fields', ['*']), $params)
+                ->collect()
+                ->snakeKeys()
         );
+    }
+
+    protected function localizationParams(): array
+    {
+        return array_filter([
+            'languageCode' => str_replace('_', '-', Site::current()->lang()),
+            'regionCode' => $this->regionCode(),
+        ], fn ($value) => filled($value));
+    }
+
+    protected function regionCode(): ?string
+    {
+        return \Locale::getRegion(Site::current()->locale()) ?: null;
+    }
+
+    protected function placeDetailsCacheKey(string $id, array $params): string
+    {
+        return collect(['google-maps-place-details', $id, ...array_values($params)])
+            ->filter()
+            ->implode('-');
     }
 }
