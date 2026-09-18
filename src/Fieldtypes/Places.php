@@ -162,9 +162,9 @@ class Places extends Fieldtype
         ];
     }
 
-    public function preProcessIndex($data): string
+    public function preProcessIndex($data): ?string
     {
-        return $this->placeDetails($data)->get('short_formatted_address');
+        return $this->placeDetails($data)?->get('formatted_address');
     }
 
     public function augment($data): ?Collection
